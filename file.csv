@@ -1,0 +1,12 @@
+id, util.person name, coordinates x, coordinates y, creationDate, util.person height, util.person weight, util.person passportID, util.person color,location x, location y, location z, location name
+1,igor,12,12,2022-04-18T19:15:06.435+03:00[Europe/Moscow],189,90.0,2222222222,RED,12.0,12.0,12.0,church
+2,oleg,13,13,2022-04-18T19:15:06.439+03:00[Europe/Moscow],190,91.0,333333333333333,WHITE,13.0,13.0,13.0,hospital
+3,igor,12,-11,2022-04-18T19:15:18.374+03:00[Europe/Moscow],11,111.0,22222222,RED,10.0,10.0,10.0,reqer
+4,igor,1,1,2022-05-04T03:34:40.123+03:00[Europe/Moscow],1,1.0,dsdasdasdads,RED,1.0,1.0,1.0,fsdfdsdsf
+5,igor ,1,1,2022-05-04T04:31:19.137+03:00[Europe/Moscow],1,1.0,dsdsdsdsd,RED,1.0,1.0,1.0,dsdsdddsd
+6,igor,1,1,2022-05-04T04:34:21.701+03:00[Europe/Moscow],1,1.0,qeqwqwwqwqw,RED,1.0,1.0,1.0,rerereerer
+7,igor,1,1,2022-05-04T04:35:50.602+03:00[Europe/Moscow],1,1.0,asdasdadsdad,RED,1.0,1.0,1.0,ffdsfsdfs
+8,igor,1,1,2022-05-04T04:37:56.162+03:00[Europe/Moscow],1,1.0,fdfsdffdfsf,RED,1.0,1.0,1.0,sdfsdfsfsf
+9,igor,1,1,2022-05-04T11:11:19.134+03:00[Europe/Moscow],1,1.0,dasdasdasdad,RED,1.0,1.0,1.0,dsadaasdasd
+10,s,1,1,2022-05-30T20:15:42.717+03:00[Europe/Moscow],1,1.0,sfdsfsdfdsf,null,1.0,1.0,1.0,ddsf
+11,fdfsdf,1,1,2022-05-31T14:49:29.096501+03:00[Europe/Moscow],1,1.0,fdfsdfsdfdsf,null,1.0,1.0,1.0,sdfsdf
