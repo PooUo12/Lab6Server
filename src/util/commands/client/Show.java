@@ -1,7 +1,8 @@
-package util.commands;
+package util.commands.client;
 
 import server.DatagramServer;
 import server.list.PersonList;
+import util.commands.Command;
 import util.sendingUtils.Response;
 
 import java.util.List;

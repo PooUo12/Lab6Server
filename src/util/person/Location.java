@@ -18,4 +18,20 @@ public class Location implements Serializable {
     public String toFullString(){
         return (x+","+y+","+z+ ","+ name);
     }
+
+    public Double getX() {
+        return x;
+    }
+
+    public Double getY() {
+        return y;
+    }
+
+    public float getZ() {
+        return z;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

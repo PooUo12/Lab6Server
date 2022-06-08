@@ -32,15 +32,15 @@ public class PersonCreator {
         try {
             int id;
             ZonedDateTime creationDate;
-            if (args[0] == null){
+            if (args[1] == null){
                 id = personList.maxId()+ 1;
             } else {
-                id = Integer.parseInt(args[0]);
+                id = Integer.parseInt(args[1]);
                 if (personList.compareIds(id)){
                     id = personList.maxId() + 1;
                 }
             }
-            String personName = args[1];
+            String personName = args[0];
             int coordinatesX = Integer.parseInt(args[2]);
             Long coordinatesY = Long.parseLong(args[3]);
             if (args[4] == null){
@@ -60,12 +60,13 @@ public class PersonCreator {
             Double locationY = Double.parseDouble(args[10]);
             float locationZ = Float.parseFloat(args[11]);
             String locationName = args[12];
+            String user = args[13];
 
 
             if (personName.length() > 0 && personHeight > 0 && personWeight > 0 && passportID.length() >= 8 && locationName.length() <= 233) {
                 Coordinates coordinates = new Coordinates(coordinatesX, coordinatesY);
                 Location location = new Location(locationX, locationY, locationZ, locationName);
-                person = new Person(id, personName, coordinates, creationDate ,personHeight, personWeight, passportID, colorHair, location);
+                person = new Person(id, personName, coordinates, creationDate ,personHeight, personWeight, passportID, colorHair, location, user);
             } else {
                 throw new IllegalFieldsException("Impossible to create person because of incorrect args");
             }

@@ -1,30 +1,37 @@
-package util.commands;
+package util.commands.client;
 
+import server.DatabaseConnector;
 import server.DatagramServer;
 import server.list.PersonList;
+import util.commands.Command;
 import util.exceptions.InvalidCommandException;
 import util.person.Person;
 import util.sendingUtils.Response;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Update extends Command {
 
     public Response execute(List<Object> params){
+        DatabaseConnector db = new DatabaseConnector();
         String title;
         String message;
-        List<Person> forRemoving;
+        List<Integer> forRemoving;
         PersonList personList = (PersonList) params.get(0);
-        Person person = (Person) params.get(1);
-        int arg = (int) params.get(2);
-        forRemoving = personList.getList().stream().
-                filter(s -> s.getId() == arg).
-                collect(Collectors.toList());
+        String login = (String) params.get(1);
+        Person person = (Person) params.get(2);
+        int arg = (int) params.get(3);
+
+        forRemoving = personList.getList().stream().map(Person::getId).filter(id -> id == arg).collect(Collectors.toList());
         try {
             if (!forRemoving.isEmpty()) {
-                for (Person s : forRemoving) {
-                    personList.removePerson(s);
+                if (!db.update(person, arg, login)){
+                    return new Response("Error", "This Person can't be edited");
+                }
+                for (int s : forRemoving) {
+                    personList.removePerson(s, login);
                 }
                 personList.addPerson(person);
                 title = "Success";

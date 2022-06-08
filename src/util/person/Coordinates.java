@@ -14,4 +14,12 @@ public class Coordinates implements Serializable {
     public String toFullString(){
         return (x+","+y);
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public Long getY() {
+        return y;
+    }
 }
