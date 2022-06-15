@@ -23,16 +23,18 @@ public class RemoveLower extends Command {
         PersonList personList = (PersonList) params.get(0);
         Person person = (Person) params.get(2);
 
-        forRemoving = personList.getList().stream().filter(s1 -> s1.compareTo(person) < 0).map(Person::getId).collect(Collectors.toList());
+        forRemoving = personList.getList().stream().filter(s1 -> s1.compareTo(person) > 0).map(Person::getId).collect(Collectors.toList());
         if (forRemoving.isEmpty()){
+            DatagramServer.logger.info("No Elements were removed");
             return new Response("Success","No elements were deleted( no suitable elements)");
         }
         if (!db.remove(forRemoving, login)){
             message = "You can't access these elements";
-        }
-        for (int s: forRemoving) {
-            personList.removePerson(s, login);
+            DatagramServer.logger.info("No Elements were removed");
+        } else {
+            db.collect(personList);
             message = forRemoving.size() + " elements were removed";
+            DatagramServer.logger.info("Elements were successfully removed");
         }
         DatagramServer.logger.info("Command RemoveLower completed");
         return new Response(title,message);

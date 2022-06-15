@@ -1,6 +1,5 @@
 package server;
 
-import server.list.ListSaver;
 import server.list.PersonList;
 import sun.misc.Signal;
 
@@ -12,11 +11,14 @@ import java.nio.channels.DatagramChannel;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.FileHandler;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class DatagramServer {
     public static final Logger logger = Logger.getLogger(DatagramServer.class.getSimpleName());
     public static InetSocketAddress address;
+
 
 
     PersonList personList;
@@ -50,19 +52,18 @@ public class DatagramServer {
         db.collect(personList);
         logger.info("Collection from file saved");
 
-        setupShutDownWork(personList, channel);
-        setupSignalHandler(personList, channel);
+        setupShutDownWork(channel);
+        setupSignalHandler(channel);
 
         logger.info("Server started at #" + address);
         return channel;
     }
 
 
-    private void setupSignalHandler(PersonList personList, DatagramChannel channel) {
+    private void setupSignalHandler(DatagramChannel channel) {
         Signal.handle(new Signal("TSTP"), signal -> {
-            ListSaver listSaver = new ListSaver(personList.getList());
-            listSaver.save();
             try {
+                DatagramServer.logger.info("Closing server...");
                 channel.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -70,11 +71,10 @@ public class DatagramServer {
         });
     }
 
-    private void setupShutDownWork(PersonList personList, DatagramChannel channel) {
+    private void setupShutDownWork(DatagramChannel channel) {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            ListSaver listSaver = new ListSaver(personList.getList());
-            listSaver.save();
             try {
+                DatagramServer.logger.info("Closing server...");
                 channel.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -83,6 +83,19 @@ public class DatagramServer {
     }
 
     public static void main(String[] args) {
+        FileHandler fh;
+
+        try {
+
+            fh = new FileHandler("logs.log");
+            logger.addHandler(fh);
+            SimpleFormatter formatter = new SimpleFormatter();
+            fh.setFormatter(formatter);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         ExecutorService fixedPool = Executors.newFixedThreadPool(10);
         DatagramServer server = new DatagramServer();
         DatagramChannel channel = server.startServer();
@@ -93,6 +106,7 @@ public class DatagramServer {
                     messageProcessor.receiveMessage(channel);
                 } catch (IOException e) {
                     try {
+                        fixedPool.shutdown();
                         channel.close();
                         break;
                     } catch (IOException ex) {

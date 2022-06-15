@@ -25,11 +25,13 @@ public class RemoveById extends Command {
         list.add(arg);
         boolean flag = db.remove(list, login);
         if (flag) {
+            db.collect(personList);
             message = "Element was successfully removed";
+            DatagramServer.logger.info("Elements were successfully removed");
         } else {
             message = "Element with this id can't be removed";
+            DatagramServer.logger.info("No Elements were removed");
         }
-        personList.removePerson(arg, login);
 
         DatagramServer.logger.info("Command RemoveById completed");
         return new Response(title, message);

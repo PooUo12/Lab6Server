@@ -17,10 +17,11 @@ public class Clear extends Command {
         String login = (String) params.get(1);
         if (db.clear(login)) {
             personList.listClean(login);
+            DatagramServer.logger.info("Command Clear completed");
+            return new Response("Success","List was cleaned");
         } else {
-
+            DatagramServer.logger.info("Command Clear completed");
+            return new Response("Error","You have 0 elements");
         }
-        DatagramServer.logger.info("Command Clear completed");
-        return new Response("Success","List was cleaned");
     }
 }

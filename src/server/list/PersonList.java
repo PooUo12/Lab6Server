@@ -3,14 +3,13 @@ package server.list;
 import util.person.Person;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PersonList {
-    private final LinkedList<Person> list;
+    private LinkedList<Person> list;
     private final ZonedDateTime initializationDate;
 
     public PersonList(){
@@ -51,6 +50,10 @@ public class PersonList {
     public void listClean(String login){
         List<Person> forRemoving = this.list.stream().filter(person -> person.getUser().equals(login)).collect(Collectors.toList());
         forRemoving.forEach(this.list::remove);
+    }
+
+    public void fullClean(){
+        this.list = new LinkedList<>();
     }
 
     public boolean compareIds(int id){

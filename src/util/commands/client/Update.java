@@ -30,10 +30,7 @@ public class Update extends Command {
                 if (!db.update(person, arg, login)){
                     return new Response("Error", "This Person can't be edited");
                 }
-                for (int s : forRemoving) {
-                    personList.removePerson(s, login);
-                }
-                personList.addPerson(person);
+                db.collect(personList);
                 title = "Success";
                 message = "Element was replaced";
                 DatagramServer.logger.info("Command Update completed");

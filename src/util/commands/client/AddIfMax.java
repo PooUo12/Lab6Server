@@ -21,17 +21,18 @@ public class AddIfMax extends Command {
         person.setUser(login);
         try{
             if (person.compareTo(personList.getList().peekLast()) > 0){
-                int id = db.generateId();
-                person.setId(id + 1);
                 if (db.add(person)) {
-                    personList.getList().add(person);
+                    db.collect(personList);
+                    DatagramServer.logger.info("New element added to personList");
                     title = "Success";
                     message = "Element was added";
                 } else{
+                    DatagramServer.logger.info("PersonList wasn't updated");
                     title = "Error";
                     message = "Element was the biggest but it can't be added to DataBase";
                 }
             } else {
+                DatagramServer.logger.info("PersonList wasn't updated");
                 message = "Element wasn't added(not biggest)";
             }
             DatagramServer.logger.info("Command AddIfMax completed");

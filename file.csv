@@ -1,5 +1,4 @@
 id, util.person name, coordinates x, coordinates y, creationDate, util.person height, util.person weight, util.person passportID, util.person color,location x, location y, location z, location name
-39,1,1,1,2022-06-07T23:20:26.162+03:00[Europe/Moscow],1,1.0,dsdddadsdsdasd,RED,1.0,1.0,1.0,1,admin1
-40,1,1,1,2022-06-07T23:54:22.497+03:00[Europe/Moscow],1,1.0,dsadsdasdsad,null,1.0,1.0,1.0,1,admin1
-41,1,1,1,2022-06-08T00:13:18.475+03:00[Europe/Moscow],1,1.0,ssadasddsdsad,null,1.0,1.0,1.0,1,admin1
-34,zez,1,1,2022-06-07T22:18:17.656+03:00[Europe/Moscow],1,1.0,dsddasdsada,null,1.0,1.0,1.0,1,admin1
+47,1,1,1,2022-06-14T15:44:20.638+03:00[Europe/Moscow],1,1.0,1dsdasdadasd,null,1.0,1.0,1.0,1,admin1
+48,1,1,1,2022-06-14T15:44:20.638+03:00[Europe/Moscow],1,1.0,1dsdasdadasd,null,1.0,1.0,1.0,1,admin1
+49,1,1,1,2022-06-14T15:45:28.013+03:00[Europe/Moscow],100,1.0,sdasdasdasdadsa,null,1.0,1.0,1.0,1,admin1

@@ -18,12 +18,12 @@ public class Add extends Command {
         String login = (String) params.get(1);
         Person person = (Person) params.get(2);
         person.setUser(login);
-        int id = db.generateId();
-        person.setId(id + 1);
         if (db.add(person)){
-            personList.addPerson(person);
+            db.collect(personList);
+            DatagramServer.logger.info("New element added to personList");
             response = new Response("Success", "Person added");
         } else {
+            DatagramServer.logger.info("PersonList wasn't updated");
             response = new Response("Error", "Person can't be added to DataBase");
         }
         DatagramServer.logger.info("Command Add completed");

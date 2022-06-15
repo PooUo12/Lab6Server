@@ -32,22 +32,11 @@ public class PersonCreator {
         try {
             int id;
             ZonedDateTime creationDate;
-            if (args[1] == null){
-                id = personList.maxId()+ 1;
-            } else {
-                id = Integer.parseInt(args[1]);
-                if (personList.compareIds(id)){
-                    id = personList.maxId() + 1;
-                }
-            }
+            id = Integer.parseInt(args[1]);
             String personName = args[0];
             int coordinatesX = Integer.parseInt(args[2]);
             Long coordinatesY = Long.parseLong(args[3]);
-            if (args[4] == null){
-                creationDate = ZonedDateTime.now();
-            } else {
-                creationDate = ZonedDateTime.parse(args[4]);
-            }
+            creationDate = ZonedDateTime.parse(args[4]);
             int personHeight = Integer.parseInt(args[5]);
             double personWeight = Double.parseDouble(args[6]);
             String passportID = args[7];
